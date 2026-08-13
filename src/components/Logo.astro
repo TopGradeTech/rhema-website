@@ -2,8 +2,26 @@
 import { SITE } from 'astrowind:config';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
+<span class="flex items-center self-center whitespace-nowrap">
+  {
+    /*
+    The mark is inlined rather than loaded as an <img>: it is only a few paths,
+    so inlining avoids a request and stays crisp at any size. The geometry
+    matches assets/make_icon.py in the app repo, which rasterises the installer
+    icon - verified pixel-identical to the shipped icon.png - so the site and
+    the application show the same logo. aria-hidden because the site name sits
+    right beside it, so announcing both would be redundant.
+  */
+  }
+  <svg class="h-8 w-8 shrink-0" viewBox="0 0 100 100" role="img" aria-hidden="true" focusable="false">
+    <rect x="2" y="2" width="96" height="96" rx="22" fill="#10131A"></rect>
+    <g fill="none" stroke="#5B8FF7" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 76 C24 56 30 56 34 76 C37 90 40 90 44 76"></path>
+      <path d="M44 14 L44 76"></path>
+      <path d="M44 14 C61 14 74 21 74 33 C74 45 61 48 44 48"></path>
+    </g>
+  </svg>
+  <span class="ml-2 text-2xl font-bold whitespace-nowrap text-gray-900 md:text-xl rtl:ml-0 rtl:mr-2 dark:text-white">
+    {SITE?.name}
+  </span>
 </span>
