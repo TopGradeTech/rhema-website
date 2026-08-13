@@ -1,0 +1,18 @@
+# Force LF everywhere, in the repository and in the working tree.
+#
+# Without this, a clone on Windows with core.autocrlf=true converts every file
+# to CRLF, and `npm run check` then fails its Prettier step on ~90 untouched
+# template files because Prettier expects LF. Pinning it here keeps the check
+# meaningful instead of permanently red.
+* text=auto eol=lf
+
+# Binary files must never be line-ending converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,151 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features from '~/components/widgets/Features.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { GITHUB_REPO, GITHUB_DISCUSSIONS } from '~/navigation';
+import { getPermalink } from '~/utils/permalinks';
+
+// Same PayPal button the app's own Donate dialog opens, so the two cannot
+// drift apart (see DONATE_URL in settings_ui_mixin.py).
+const DONATE_URL = 'https://www.paypal.com/donate/?hosted_button_id=N36X2WBFVU9U8';
+
+const metadata = {
+  title: 'Donate',
+  description:
+    'Rhema is free and always will be. Donations fund the time to keep improving it, and keep it available at no cost to churches and ministries.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Support Rhema"
+    title="Rhema is free. Keeping it that way takes time."
+    callToAction={{
+      variant: 'primary',
+      text: 'Donate via PayPal',
+      href: DONATE_URL,
+      target: '_blank',
+      icon: 'tabler:heart',
+    }}
+  >
+    <Fragment slot="subtitle">
+      &ldquo;So faith comes from hearing, and hearing through the word&nbsp;(<em>rhema</em>) of Christ.&rdquo; &mdash;
+      Romans 10:17
+    </Fragment>
+  </HeroText>
+
+  <!-- What donations actually do -->
+  <Features
+    title="Where it goes"
+    subtitle="Rhema is built and maintained by one person in their free time. There is no team behind it and no marketing budget, and it is given away rather than sold."
+    columns={3}
+    items={[
+      {
+        title: 'Development time',
+        description:
+          'The largest cost by far. Every feature, bug fix and release is unpaid evening and weekend work, and time is the thing donations actually buy.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Hardware for testing',
+        description:
+          'Real-time speech models need a capable GPU, and behaviour differs across graphics cards, microphones and multi-monitor setups. Testing widely takes hardware.',
+        icon: 'tabler:device-desktop',
+      },
+      {
+        title: 'Keeping it free',
+        description:
+          'There is no paid tier and no plan for one. Churches, ministries and nonprofits get the whole application at no cost, and donations are what make that sustainable.',
+        icon: 'tabler:gift',
+      },
+    ]}
+  />
+
+  <!-- Other ways to help -->
+  <Features
+    tagline="Not only money"
+    title="Other ways to help"
+    columns={2}
+    items={[
+      {
+        title: 'Tell us how it went',
+        description:
+          'Reports from real services and meetings are genuinely useful, especially when something worked badly. Accents, room acoustics and hardware vary far more than any one developer can test.',
+        icon: 'tabler:message-2',
+        callToAction: {
+          text: 'Share your experience',
+          href: `${GITHUB_DISCUSSIONS}/categories/general`,
+          target: '_blank',
+        },
+      },
+      {
+        title: 'Suggest what is missing',
+        description:
+          'Feature requests are read by an actual person. Not everything can be built by one developer, but a clearly explained need has a real chance of shaping what comes next.',
+        icon: 'tabler:bulb',
+        callToAction: { text: 'Request a feature', href: `${GITHUB_DISCUSSIONS}/categories/ideas`, target: '_blank' },
+      },
+      {
+        title: 'Contribute code',
+        description:
+          'The whole application is open source under the GPL-3.0. Bug fixes, language handling and accessibility improvements are all welcome.',
+        icon: 'tabler:code',
+        callToAction: { text: 'View the source', href: GITHUB_REPO, target: '_blank' },
+      },
+      {
+        title: 'Pass it on',
+        description:
+          'Most people who need this do not know it exists. If it helped your congregation or meeting, mention it to someone running into the same language barrier.',
+        icon: 'tabler:share',
+        callToAction: { text: 'What Rhema does', href: getPermalink('/'), target: '_self' },
+      },
+    ]}
+  />
+
+  <FAQs
+    title="Honest answers"
+    items={[
+      {
+        title: 'Are donations tax deductible?',
+        description:
+          'No. Rhema is not a registered charity and donations are not tax deductible. Please give on that basis rather than expecting a receipt for your accountant.',
+      },
+      {
+        title: 'Is anything held back if I do not donate?',
+        description:
+          'Nothing. There is no paid version, no locked features, no watermark and no nag screen. The entire application is free to everyone, donors or not.',
+      },
+      {
+        title: 'Can I donate monthly?',
+        description:
+          'Yes, PayPal allows a recurring amount if you prefer. Regular support is more useful than a one-off, because it makes the time commitment predictable, but one-off gifts are just as welcome.',
+      },
+      {
+        title: 'Can my church get an invoice or a receipt?',
+        description:
+          'PayPal issues a payment confirmation, which is usually enough for a small church’s records. If your treasurer needs something more specific, ask on GitHub Discussions.',
+      },
+      {
+        title: 'I cannot give anything. Can I still use it?',
+        description:
+          'Yes, absolutely, and please do. It was built for congregations without a budget for professional interpretation. Using it is not something you have to earn.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Donate via PayPal', href: DONATE_URL, target: '_blank' },
+      { text: 'Download Rhema', href: getPermalink('/download'), target: '_self' },
+    ]}
+  >
+    <Fragment slot="title">Thank you</Fragment>
+    <Fragment slot="subtitle">
+      Whether you give or not, thank you for using something built to help people understand the spoken word.
+    </Fragment>
+  </CallToAction>
+</Layout>

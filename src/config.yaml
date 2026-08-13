@@ -1,0 +1,83 @@
+site:
+  name: Rhema
+  # Configured for GitHub Pages project pages, which works with no DNS setup.
+  # To move to a custom domain (e.g. rhema.topgradetech.com): set `site` to it,
+  # set `base` to '/', and add a `public/CNAME` file containing the domain.
+  site: 'https://topgradetech.github.io'
+  base: '/rhema-website'
+  trailingSlash: false
+
+  # Deliberately empty. The template shipped with its own author's
+  # verification ID here, which would have pointed Search Console at their
+  # property rather than ours.
+  googleSiteVerificationId: ''
+
+# Default SEO metadata
+metadata:
+  title:
+    default: Rhema — live speech translation that runs on your own machine
+    template: '%s — Rhema'
+  description: 'Rhema transcribes live speech and translates it in real time, then displays it in large text on a second screen. Everything runs on your own computer: no cloud services, no per-minute fees, and no audio leaving the room. Free and open source.'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: Rhema
+    images:
+      - url: '~/assets/images/default.png'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    # The template's own @handle was removed rather than replaced; add one here
+    # if Rhema ever gets a social account.
+    cardType: summary_large_image
+
+i18n:
+  language: en
+  textDirection: ltr
+
+apps:
+  # No blog: this is a three-page site. Setting these back to true restores the
+  # entire blog (routes, RSS, categories, tags) with no other changes needed,
+  # since the template's blog components are still present.
+  blog:
+    isEnabled: false
+    postsPerPage: 6
+
+    post:
+      isEnabled: false
+      permalink: '/%slug%'
+      robots:
+        index: true
+
+    list:
+      isEnabled: false
+      pathname: 'blog'
+      robots:
+        index: true
+
+    category:
+      isEnabled: false
+      pathname: 'category'
+      robots:
+        index: true
+
+    tag:
+      isEnabled: false
+      pathname: 'tag'
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: false
+    relatedPostsCount: 4
+
+analytics:
+  vendors:
+    googleAnalytics:
+      # No analytics. Rhema itself makes no network calls beyond its update
+      # check, and the site follows the same principle.
+      id: null
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

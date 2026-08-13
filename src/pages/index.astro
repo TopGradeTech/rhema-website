@@ -1,0 +1,201 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { GITHUB_REPO, GITHUB_RELEASES } from '~/navigation';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Rhema — live speech translation that runs on your own machine',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Download for Windows',
+        href: getPermalink('/download'),
+      },
+      { text: 'View source', href: GITHUB_REPO, target: '_blank' },
+    ]}
+  >
+    <Fragment slot="title">
+      Live translation for the spoken word,<br />
+      <span class="text-accent dark:text-white highlight">on your own machine</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Rhema listens, transcribes and translates speech as it happens, then shows it in large, readable text on a second
+      screen or projector. Nothing is sent to the cloud, there is no per-minute billing, and it keeps working when the
+      internet does not.
+    </Fragment>
+  </Hero>
+
+  <!-- Why it exists -->
+  <Note
+    title="Why Rhema?"
+    description="Built so a Spanish-speaking congregation could follow an English sermon in real time, without paying per minute or trusting a third party with the audio."
+  />
+
+  <!-- Features -->
+  <Features
+    id="features"
+    tagline="What it does"
+    title="Everything runs locally"
+    subtitle="Rhema uses open speech and translation models on your own hardware. No account, no API keys, no usage limits."
+    items={[
+      {
+        title: 'Nothing leaves the room',
+        description:
+          'Speech recognition and translation both run on your computer. No audio and no transcript is ever uploaded, which matters when the microphone is live in a service, a meeting or a counselling session.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'No running costs',
+        description:
+          'Cloud captioning bills by the minute, which adds up fast for anyone streaming several hours a week. Rhema is free, and there is no meter running while it listens.',
+        icon: 'tabler:coin-off',
+      },
+      {
+        title: '99 languages in, 200 out',
+        description:
+          'Whisper handles the listening across 99 languages and NLLB-200 handles translation into 200, so most language pairs are a dropdown away rather than a different product.',
+        icon: 'tabler:language',
+      },
+      {
+        title: 'Built for a projector',
+        description:
+          'A fullscreen output window with adjustable text size, colours and line count, sent to whichever monitor you choose, while you keep the controls on your own screen.',
+        icon: 'tabler:device-tv',
+      },
+      {
+        title: 'Sits over your stream',
+        description:
+          'Optionally draw captions over an OBS Virtual Camera feed, so what your online audience sees matches what is on the screen in the room.',
+        icon: 'tabler:video',
+      },
+      {
+        title: 'Knows scripture',
+        description:
+          'Bible book names and scripture references are recognised and formatted rather than mangled phonetically, and a profanity filter can be left on for public display.',
+        icon: 'tabler:book',
+      },
+    ]}
+  />
+
+  <!-- How it works -->
+  <Steps
+    title="From spoken word to screen"
+    items={[
+      {
+        title: 'It listens',
+        description:
+          'Rhema captures your microphone and detects where each sentence ends, so text appears in natural units instead of a jittering stream of half-words.',
+        icon: 'tabler:microphone',
+      },
+      {
+        title: 'It transcribes',
+        description:
+          'A small model shows text almost immediately, while a larger, more accurate one finalises each sentence a moment later. Both run offline on your machine.',
+        icon: 'tabler:file-text',
+      },
+      {
+        title: 'It translates',
+        description:
+          'Each finished sentence is translated locally into your chosen target language, with support for your own vocabulary list for names and terms that matter to you.',
+        icon: 'tabler:language-hiragana',
+      },
+      {
+        title: 'It displays',
+        description:
+          'Text rolls up the output screen at a readable pace, sized for the back of the room, on whichever monitor or projector you selected.',
+        icon: 'tabler:presentation',
+      },
+    ]}
+  />
+
+  <!-- Requirements -->
+  <Features
+    tagline="Before you start"
+    title="What you need"
+    items={[
+      {
+        title: 'Windows',
+        description:
+          'Rhema is a Windows desktop application. The installer needs no administrator rights, so it works on managed church and event laptops.',
+        icon: 'tabler:brand-windows',
+      },
+      {
+        title: 'An NVIDIA GPU is recommended',
+        description:
+          'A GPU with roughly 4-6 GB of VRAM gives comfortable real-time performance. It runs on CPU alone as well, just more slowly, and it tells you which models suit your hardware.',
+        icon: 'tabler:cpu',
+      },
+      {
+        title: 'Internet once, then never',
+        description:
+          'The speech and translation models download the first time you use them. After that Rhema runs fully offline.',
+        icon: 'tabler:wifi-off',
+      },
+    ]}
+  />
+
+  <!-- FAQs -->
+  <FAQs
+    title="Questions"
+    items={[
+      {
+        title: 'Is it really free?',
+        description:
+          'Yes, and it is open source under the GPL-3.0 licence. There is no paid tier and no trial. If it is useful to you, donations help pay for the time to keep improving it, but nothing is withheld if you do not give.',
+      },
+      {
+        title: 'Does any audio leave my computer?',
+        description:
+          'No. Both the speech recognition and the translation run locally. The only network request Rhema makes is checking GitHub for a newer version, and you choose when to do that.',
+      },
+      {
+        title: 'How accurate is it?',
+        description:
+          'It uses Whisper for speech recognition and Meta’s NLLB-200 for translation, which are strong open models, but it is not a human interpreter. Expect it to handle clear speech on a decent microphone well, and to struggle with crosstalk, heavy echo or very quiet speakers.',
+      },
+      {
+        title: 'Can I use it for something other than church services?',
+        description:
+          'Yes. Nothing about it is church-specific beyond the optional Bible vocabulary and scripture formatting. Meetings, classes and community events all work the same way.',
+      },
+      {
+        title: 'What if it does not do what I need?',
+        description:
+          'Ask. Feature requests go to GitHub Discussions and are read by an actual person. It is one developer, so not everything gets built, but a good idea has a real chance.',
+      },
+    ]}
+  />
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Download for Windows',
+        href: getPermalink('/download'),
+      },
+      { text: 'Releases on GitHub', href: GITHUB_RELEASES, target: '_blank' },
+    ]}
+  >
+    <Fragment slot="title">Try it on your own machine</Fragment>
+    <Fragment slot="subtitle">
+      Free, offline, and open source. Install it, point it at a microphone, and see how it does.
+    </Fragment>
+  </CallToAction>
+</Layout>

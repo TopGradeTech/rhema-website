@@ -1,0 +1,135 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import HeroText from '~/components/widgets/HeroText.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features from '~/components/widgets/Features.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { GITHUB_REPO, GITHUB_RELEASES, GITHUB_ISSUES } from '~/navigation';
+
+const metadata = {
+  title: 'Download',
+  description:
+    'Download Rhema for Windows. Free and open source, installs without administrator rights, and runs entirely on your own machine.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Download"
+    title="Get Rhema for Windows"
+    callToAction={{
+      variant: 'primary',
+      text: 'Download the latest release',
+      href: GITHUB_RELEASES,
+      target: '_blank',
+      icon: 'tabler:download',
+    }}
+  >
+    <Fragment slot="subtitle">
+      Downloads are hosted on GitHub alongside the source code, so you can see exactly what you are installing. The
+      installer is large (around 1.6&nbsp;GB) because it bundles the speech and translation engines instead of calling
+      out to a service.
+    </Fragment>
+  </HeroText>
+
+  <Steps
+    title="Installing"
+    items={[
+      {
+        title: 'Download Rhema-Setup.exe',
+        description:
+          'The button above opens the latest release on GitHub. Rhema-Setup.exe is attached at the bottom of that page under Assets.',
+        icon: 'tabler:download',
+      },
+      {
+        title: 'Run the installer',
+        description:
+          'It installs for your user account only, so it needs no administrator rights and raises no UAC prompt. That is deliberate, so it works on managed church and event laptops.',
+        icon: 'tabler:player-play',
+      },
+      {
+        title: 'Let it fetch its models',
+        description:
+          'On first run Rhema downloads the speech and translation models it needs, which takes a while on a slow connection. After that it runs fully offline.',
+        icon: 'tabler:cloud-download',
+      },
+      {
+        title: 'Point it at a microphone',
+        description:
+          'Choose your audio device and the monitor for the output window, then run Hardware Autodetect so it picks models that suit your graphics card.',
+        icon: 'tabler:settings',
+      },
+    ]}
+  />
+
+  <Features
+    tagline="Requirements"
+    title="What you need"
+    items={[
+      {
+        title: 'Windows 10 or 11 (64-bit)',
+        description: 'Rhema is a Windows desktop app. There is no macOS or Linux build.',
+        icon: 'tabler:brand-windows',
+      },
+      {
+        title: 'About 6 GB of disk space',
+        description:
+          'Roughly 2.5 GB for the app plus the speech and translation models, which are cached separately after first use.',
+        icon: 'tabler:database',
+      },
+      {
+        title: 'NVIDIA GPU recommended',
+        description:
+          'Around 4-6 GB of VRAM gives comfortable real-time performance. CPU-only works but lags further behind the speaker; Rhema will suggest smaller models if that is what your hardware suits.',
+        icon: 'tabler:cpu',
+      },
+    ]}
+  />
+
+  <FAQs
+    title="Before you ask"
+    items={[
+      {
+        title: 'Why is the download so large?',
+        description:
+          'It bundles the speech recognition and translation runtimes so the app works offline with no account or API key. A cloud captioning tool would be a small download and a recurring bill; this is the other trade.',
+      },
+      {
+        title: 'Windows warned me about the installer.',
+        description:
+          'The installer is not code-signed, because a signing certificate is a recurring cost for a free project, so SmartScreen may warn you. You can verify what you are installing by reading the source, and the build is produced from the same repository the download comes from. Choose More info, then Run anyway if you are comfortable.',
+      },
+      {
+        title: 'Do I need to uninstall an old version first?',
+        description:
+          'No. Run the new installer over the top and your settings are preserved. Rhema can also update itself from About, Check for Updates.',
+      },
+      {
+        title: 'I am on Rhema 1.1.4 or older and Check for Updates finds nothing.',
+        description:
+          'Those versions look for updates in an old location that is no longer used. Download the latest release from the button above and install it once; automatic updates work normally after that.',
+      },
+      {
+        title: 'Can I run it from source instead?',
+        description:
+          'Yes. The repository README covers running it with Python, including the GPU prerequisites and the pinned dependency set used for releases.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Latest release', href: GITHUB_RELEASES, target: '_blank' },
+      { text: 'Read the setup guide', href: `${GITHUB_REPO}#readme`, target: '_blank' },
+    ]}
+  >
+    <Fragment slot="title">Something not working?</Fragment>
+    <Fragment slot="subtitle">
+      The README covers setup, including OBS video overlay. If it is broken rather than confusing,
+      <a class="underline" href={GITHUB_ISSUES}>open an issue</a> and include your version and log file.
+    </Fragment>
+  </CallToAction>
+</Layout>
