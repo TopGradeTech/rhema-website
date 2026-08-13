@@ -36,12 +36,18 @@ npm run preview  # serve the built site
 Pushing to `main` builds and deploys to GitHub Pages via `.github/workflows/actions.yaml`. Pull
 requests are checked and built but deliberately cannot publish.
 
-The site is currently configured for GitHub Pages project pages, which needs no DNS setup. To move
-it to a custom domain such as `rhema.topgradetech.com`:
+The site is served at **https://rhema.topgradetech.com** via a custom domain, which requires three
+things to agree:
 
-1. In `src/config.yaml`, set `site` to the domain and `base` to `'/'`.
-2. Add a `public/CNAME` file containing just the domain.
-3. Point the DNS record at GitHub Pages and set the custom domain in the repo's Pages settings.
+1. `public/CNAME` contains the domain. This file is what tells Pages which domain to answer for —
+   delete it and the site silently reverts to the `github.io` URL.
+2. `src/config.yaml` has `site` set to that domain and `base` set to `'/'`. If `base` is wrong every
+   internal link 404s.
+3. A `CNAME` DNS record for `rhema` points at `topgradetech.github.io`.
+
+The domain is behind Cloudflare. Keep that DNS record **DNS-only (grey cloud), not proxied** —
+GitHub has to reach it unproxied to issue and renew its Let's Encrypt certificate, and proxying it
+before the certificate exists causes SSL failures.
 
 ## Notes for future edits
 

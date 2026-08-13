@@ -1,10 +1,10 @@
 site:
   name: Rhema
-  # Configured for GitHub Pages project pages, which works with no DNS setup.
-  # To move to a custom domain (e.g. rhema.topgradetech.com): set `site` to it,
-  # set `base` to '/', and add a `public/CNAME` file containing the domain.
-  site: 'https://topgradetech.github.io'
-  base: '/rhema-website'
+  # Served from a custom domain on GitHub Pages. The domain also has to be in
+  # public/CNAME - that file is what tells Pages which domain to answer for,
+  # and removing it silently reverts the site to the github.io URL.
+  site: 'https://rhema.topgradetech.com'
+  base: '/'
   trailingSlash: false
 
   # Deliberately empty. The template shipped with its own author's
