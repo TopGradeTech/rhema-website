@@ -2,7 +2,6 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -40,12 +39,6 @@ const metadata = {
       internet does not.
     </Fragment>
   </Hero>
-
-  <!-- Why it exists -->
-  <Note
-    title="Why Rhema?"
-    description="Built so a Spanish-speaking congregation could follow an English sermon in real time, without paying per minute or trusting a third party with the audio."
-  />
 
   <!-- Features -->
   <Features
@@ -152,7 +145,7 @@ const metadata = {
 
   <!-- FAQs -->
   <FAQs
-    title="Questions"
+    title="FAQ"
     items={[
       {
         title: 'Is it really free?',
