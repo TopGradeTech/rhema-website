@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -39,6 +40,14 @@ const metadata = {
       internet does not.
     </Fragment>
   </Hero>
+
+  <!-- Positioning line: names the cost model it displaces, without naming a
+       competitor, and pairs it with the practical benefit an AV volunteer
+       actually feels when the venue's connection is unreliable. -->
+  <Note
+    icon="tabler:wifi-off"
+    description="Live captioning services bill by the minute. Rhema bills nothing, and works when the Wi-Fi doesn't."
+  />
 
   <!-- Features -->
   <Features
