@@ -140,7 +140,7 @@ const metadata = {
       {
         title: 'An NVIDIA GPU is recommended',
         description:
-          'A GPU with roughly 4-6 GB of VRAM gives comfortable real-time performance. It runs on CPU alone as well, just more slowly, and it tells you which models suit your hardware.',
+          'Around 4-6 GB of VRAM gives comfortable real-time performance, and Rhema tells you which models suit your hardware. GPU acceleration is NVIDIA-only for now — on an AMD or Apple Silicon machine it runs on the CPU instead, which works but lags further behind the speaker.',
         icon: 'tabler:cpu',
       },
       {
@@ -165,6 +165,11 @@ const metadata = {
         title: 'Does any audio leave my computer?',
         description:
           'No. Both the speech recognition and the translation run locally. The only network request Rhema makes is checking GitHub for a newer version, and you choose when to do that.',
+      },
+      {
+        title: 'Will it use my AMD graphics card?',
+        description:
+          'Not currently. GPU acceleration is NVIDIA-only out of the box, because both the speech recognition and translation engines depend on CUDA. Rhema still runs on an AMD machine, and on Apple Silicon, but on the CPU — everything works, it just falls further behind a fast speaker and suits the smaller models. ROCm builds of both engines do exist in preview, so this is a packaging gap rather than a permanent limitation; the README has the detail if you want to attempt it.',
       },
       {
         title: 'How accurate is it?',
