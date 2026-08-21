@@ -1,4 +1,9 @@
-# AstroWind Agent Instructions
+# Architecture and conventions
+
+Reference for working on this site. This is inherited from the AstroWind
+template's own documentation, so it describes the template's structure and
+idioms rather than anything Rhema-specific — see the README for what this site
+actually contains, how it deploys, and the decisions particular to it.
 
 ## Project Overview
 
